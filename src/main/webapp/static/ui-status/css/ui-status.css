@@ -1,0 +1,41 @@
+.status-spinning {
+	width: 27px;
+	height: 27px;
+	background-image: url("../images/icon-spinning-medium.gif");
+	display: inline-block;
+}
+
+.status-spinning-large {
+	width: 40px;
+	height: 40px;
+	background-image: url("../images/icon-spinning-large.gif");
+	display: inline-block;
+}
+
+.status-failure {
+	width: 27px;
+	height: 27px;
+	background-image: url("../images/icon-failure-medium.gif");
+	display: inline-block;
+}
+
+.status-failure-large {
+	width: 40px;
+	height: 40px;
+	background-image: url("../images/icon-failure-large.gif");
+	display: inline-block;
+}
+
+.status-success {
+	width: 27px;
+	height: 27px;
+	background-image: url("../images/icon-success-medium.gif");
+	display: inline-block;
+}
+
+.status-success-large {
+	width: 27px;
+	height: 27px;
+	background-image: url("../images/icon-success-large.gif");
+	display: inline-block;
+}

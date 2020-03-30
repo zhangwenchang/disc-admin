@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="
+     http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+     http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+     http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<context:component-scan base-package="com.easy.web.controller" />
+
+	<mvc:annotation-driven />
+
+	<mvc:default-servlet-handler />
+	
+	<mvc:view-controller path="/" view-name="index" />
+	
+	<mvc:view-controller path="/error" view-name="error/error" />
+	<bean id="viewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver"
+		p:prefix="/WEB-INF/jsp/" p:suffix=".jsp" />
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
+
+	<bean  
+        class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter" >  
+        <property name="messageConverters">
+        <list>
+        	<ref bean="mappingJacksonHttpMessageConverter"/>    
+        </list>  
+        </property>   
+    </bean> 
+     <!-- 处理JSON数据转换的 -->  
+    <bean id="mappingJacksonHttpMessageConverter"   
+        class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">     
+        <property name="supportedMediaTypes">    
+            <list>    
+                  <value>text/html;charset=UTF-8</value>    
+            </list>    
+        </property>    
+    </bean>	
+
+	<!-- <mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/**" />
+			<bean class="com.easy.web.interceptor.AdminContextInterceptor">
+				<property name="auth" value="true"/>
+				<property name="loginUrl" value="/user/login"/>
+				<property name="excludeUrls">
+					<list>
+						<value>/static/**</value>
+						<value>/user/index</value>
+						<value>/user/login</value>
+						<value>/user/logout</value>
+						<value>/user/password/showResetPwd</value>
+						<value>/user/password/resetPwd</value>
+					</list>
+				</property>
+			</bean>
+		</mvc:interceptor>
+	</mvc:interceptors> -->
+	
+	<mvc:resources mapping="/static/**" location="/static/" />
+</beans>
